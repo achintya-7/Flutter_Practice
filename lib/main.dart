@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:practice/pages/home.dart';
 import 'package:practice/pages/login_page.dart';
 
@@ -15,8 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      themeMode: ThemeMode.light,
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+        fontFamily: GoogleFonts.lato().fontFamily,
+        primaryTextTheme: GoogleFonts.latoTextTheme(),
+        ),
       darkTheme: ThemeData( 
         brightness: Brightness.dark,
       ),
@@ -27,7 +32,7 @@ class MyApp extends StatelessWidget {
       // this is how intents work here,
       // Hover over it and it will show that it takes Map
       // Map is similar to JSON and dictionary which has a key and a value
-      initialRoute:  "/home",
+      initialRoute: "/",
       routes: {
         "/": (context) => LoginPage(),
         "/home": (context) => HomePage(),
