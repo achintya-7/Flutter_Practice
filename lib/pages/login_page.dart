@@ -16,21 +16,23 @@ class _LoginPageState extends State<LoginPage> {
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
 
-
+  // function to go from loginPage to homePage
   movetoHome(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
+      // will check if the form is validated and should we continue or show the error
       setState(() {
         changeButton = true;
       });
 
       await Future.delayed(Duration(seconds: 1));
+      // will wait for 1 seconds
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
       setState(() {
-        changeButton = false;
+        changeButton =
+            false; // will change the boolean to false so the login button regains the original state.
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,8 @@ class _LoginPageState extends State<LoginPage> {
 
         //single child scroll view will provide a scrolling widget for small screens
         child: SingleChildScrollView(
-          child: Form( // form will be used to validate the empty username and password
+          child: Form(
+            // form will be used to validate the empty username and password
             key: _formKey, // form requires a key to operate
             child: Column(
               children: [
@@ -49,12 +52,12 @@ class _LoginPageState extends State<LoginPage> {
                   height: 300,
                 ),
 
-                //provides space between the 2 widgets, seems useful
+                // provides space between the 2 widgets, seems useful
                 SizedBox(
                   height: 20.0,
                 ),
 
-                //a normal text showing widget
+                // a normal text showing widget
                 Text(
                   "Hello there: $name",
                   style: TextStyle(
@@ -77,12 +80,16 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: "Enter username",
                           labelText: "Username",
                         ),
+
                         // validator will be used to check if the text field is empty or not
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Username cannot be empty";
                           }
                         },
+
+                        // this will change the value everytime, the text field is changed.
+                        // after the value is changed, name will be changed and it call the build function again
                         onChanged: (value) {
                           name = value;
                           setState(() {}); // calls the build function again
@@ -118,12 +125,14 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
 
+                      // making a custom button
                       Material(
                         color: Colors.purple,
                         borderRadius:
                             BorderRadius.circular(changeButton ? 50 : 8),
                         child: InkWell(
-                          onTap: () => movetoHome(context), // we have now made a function rather than writing it here
+                          onTap: () => movetoHome(
+                              context), // we have now made a function rather than writing it here
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),
                             width: changeButton ? 50 : 150,
@@ -131,7 +140,8 @@ class _LoginPageState extends State<LoginPage> {
                             alignment: Alignment.center,
                             child: changeButton
                                 ? Icon(
-                                    Icons.done,
+                                    Icons
+                                        .done, // will change the icon to a "tick" mark
                                     color: Colors.white,
                                   )
                                 : Text(
