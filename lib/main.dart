@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        
       // This here shows how we implement themes in the
       // app using themedata and thememode
       themeMode: ThemeMode.light,
@@ -34,16 +33,18 @@ class MyApp extends StatelessWidget {
       // this is how intents work here,
       // Hover over it and it will show that it takes Map
       // Map is similar to JSON and dictionary in Python which has a key and a value
-      initialRoute: "/", // this is the initial route from where the mobile screen will start
+      initialRoute:
+          "/", // this is the initial route from where the mobile screen will start
       routes: {
-        "/": (context) => LoginPage(),  // the stuff after the arrow is the RETURN in lambda function
+        "/": (context) =>
+            LoginPage(), // the stuff after the arrow is the RETURN in lambda function
         MyRoutes.homeRoute: (context) => HomePage(),
         MyRoutes.loginRoute: (context) => LoginPage(),
-//      You can also define the routes directly like this
-//      but professionally, people make a class (MyRoutes) and then use the variables in it
-//      Remember classes, basically the variables are string which acts as the routes of the directory       
-//      "/home": (context) => HomePage(),
-//      "/login": (context) => LoginPage(),
+        // You can also define the routes directly like this
+        // but professionally, people make a class (MyRoutes) and then use the variables in it
+        // Remember classes, basically the variables are string which acts as the routes of the directory
+        // "/home": (context) => HomePage(),
+        // "/login": (context) => LoginPage(),
       },
     );
   }
