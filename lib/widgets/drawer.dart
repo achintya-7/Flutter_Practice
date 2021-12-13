@@ -20,18 +20,19 @@ class MyDrawer extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 child: UserAccountsDrawerHeader(
                   margin: EdgeInsets.zero,
-                  decoration:BoxDecoration( color: Colors.deepPurple),
+                  decoration:BoxDecoration( color: Colors.red[600]),
                   accountEmail: Text("achintya22052000@gmail.com",
                       style: TextStyle(color: Colors.white)),
                   accountName:
                       Text("Achintya", style: TextStyle(color: Colors.white)),
                   
                   currentAccountPicture: CircleAvatar( 
+                    radius: 10,
                     backgroundImage: NetworkImage(imageURL), //use ASsetImage if you are getting image from assets
                   ),
                  ),
                 ),
-                
+
             ListTile(
               leading: Icon(CupertinoIcons.home, 
               color: Colors.white,),
