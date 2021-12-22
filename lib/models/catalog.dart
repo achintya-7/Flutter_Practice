@@ -1,83 +1,95 @@
-// ignore_for_file: unnecessary_new
-class CatalogModel {
-  static final products2 = [
-    Item(
-        // calling the constructor in the list directly
-        id: "Achintya003",
-        name: "Lataralus",
-        desc: "Math rock",
-        image: "https://upload.wikimedia.org/wikipedia/en/6/63/Tool_-_Lateralus.jpg",
-        price: 59),
-  ];
+import 'dart:convert';
 
-  static final products = [
-    Item(
-        // calling the constructor in the list directly
-        id: "Achintya003",
-        name: "Lataralus",
-        desc: "Math rock",
-        image:
-            "https://upload.wikimedia.org/wikipedia/en/6/63/Tool_-_Lateralus.jpg",
-        price: 59),
-    item1,
-    item2
-  ];
+class CatalogModel {
+  static List<Item> items = [];
 }
 
 class Item {
-  // final kinda will behave like private
-  final String id;
+  final int id;
   final String name;
   final String desc;
+  final num price;
+  final String color;
   final String image;
-  final int price;
 
-  // this constructor is called a named constructor. It will make objects by using an id like in lists
-  Item(
-      {required this.id,
-      required this.name,
-      required this.desc,
-      required this.image,
-      required this.price});
+  Item({
+    required this.id,
+    required this.name,
+    required this.desc,
+    required this.price,
+    required this.color,
+    required this.image,
+  });
+
+  Item copyWith({
+    int? id,
+    String? name,
+    String? desc,
+    num? price,
+    String? color,
+    String? image,
+  }) {
+    return Item(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      desc: desc ?? this.desc,
+      price: price ?? this.price,
+      color: color ?? this.color,
+      image: image ?? this.image,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'desc': desc,
+      'price': price,
+      'color': color,
+      'image': image,
+    };
+  }
+
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+      id: map['id']?.toInt() ?? 0,
+      name: map['name'] ?? '',
+      desc: map['desc'] ?? '',
+      price: map['price'] ?? 0,
+      color: map['color'] ?? '',
+      image: map['image'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Item.fromJson(String source) => Item.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'Item(id: $id, name: $name, desc: $desc, price: $price, color: $color, image: $image)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+  
+    return other is Item &&
+      other.id == id &&
+      other.name == name &&
+      other.desc == desc &&
+      other.price == price &&
+      other.color == color &&
+      other.image == image;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+      name.hashCode ^
+      desc.hashCode ^
+      price.hashCode ^
+      color.hashCode ^
+      image.hashCode;
+  }
 }
-
-// calling the constructor normally
-Item item1 = new Item(
-    id: "Achintya001",
-    name: "Mfdoom",
-    desc: "Best album ever",
-    image: "https://i.pinimg.com/originals/8c/79/46/8c794678213b9d32cd7e12168badc2f2.jpg",
-    price: 0,    
-  );
-
-Item item2 = new Item(
-    id: "Achintya001",
-    name: "Kanye West",
-    desc: "6/10",
-    image: "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/mbdtf-graham-sheedy.jpg",
-    price: 45
-);
-
-final products = [
-  Item(
-      // calling the constructor in the list directly
-      id: "Achintya003",
-      name: "Lataralus",
-      desc: "Math rock",
-      image: "https://upload.wikimedia.org/wikipedia/en/6/63/Tool_-_Lateralus.jpg",
-      price: 59),    
-  item1,
-  item2
-];
-
-// thhis producrt is made to follow the tutorial
-final products2 = [
-  Item(
-      // calling the constructor in the list directly
-      id: "Achintya003",
-      name: "Lataralus",
-      desc: "Math rock",
-      image: "https://upload.wikimedia.org/wikipedia/en/6/63/Tool_-_Lateralus.jpg",
-      price: 59
-      ),
-];

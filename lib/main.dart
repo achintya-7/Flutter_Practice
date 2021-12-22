@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:practice/pages/home.dart';
 import 'package:practice/pages/login_page.dart';
 import 'package:practice/utils/routes.dart';
@@ -18,6 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // removing the debug tag
+      debugShowCheckedModeBanner: false,
+
       // This here shows how we implement themes in the
       // app using themedata and thememode
       themeMode: ThemeMode.light,
@@ -28,10 +30,10 @@ class MyApp extends StatelessWidget {
       // Hover over it and it will show that it takes Map
       // Map is similar to JSON and dictionary in Python which has a key and a value
       initialRoute:
-          "/home", // this is the initial route from where the mobile screen will start
+          "/", // this is the initial route from where the mobile screen will start
       routes: {
         "/": (context) =>
-            LoginPage(), // the stuff after the arrow is the RETURN in lambda function
+            HomePage(), // the stuff after the arrow is the RETURN in lambda function
         MyRoutes.homeRoute: (context) => HomePage(),
         MyRoutes.loginRoute: (context) => LoginPage(),
         // You can also define the routes directly like this

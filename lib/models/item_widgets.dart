@@ -8,6 +8,8 @@ class ItemWidget extends StatelessWidget {
 
   final Item item;
 
+// this is the widgets which will be used for designing of a 
+// single cell of a list like adding conetent, image, sub heading, heading, etc.
   @override
   Widget build(BuildContext context) {
     return Card(
