@@ -1,16 +1,17 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, deprecated_member_use
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:practice/models/catalog.dart';
 import 'package:practice/models/item_widgets.dart';
+import 'package:practice/utils/routes.dart';
 import 'package:practice/widgets/drawer.dart';
 import 'package:practice/widgets/home_widgets/catalog_header.dart';
 import 'package:practice/widgets/home_widgets/catalog_list.dart';
 import 'package:practice/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -40,8 +41,7 @@ class _HomePageState extends State<HomePage> {
     var productsData = decodedData["products"];
 
     // this following code of line will fill the items list which was empty by default
-    CatalogModel.items =
-        List.from(productsData).map((item) => Item.fromMap(item)).toList();
+    CatalogModel.items = List.from(productsData).map((item) => Item.fromMap(item)).toList();
 
     // this will rebuild the widgets with the required data
     setState(() {});
@@ -50,13 +50,19 @@ class _HomePageState extends State<HomePage> {
     // print(productsData);
   }
 
-
 // here a lot of classes has been sent to home_widgets directory
   // here we try a new type of writing UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Mytheme.creamColor,
+      backgroundColor: context.canvasColor, //Theme.of(context).canvasColor, if not using VelocityX
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.cartRoute);
+        },
+        backgroundColor: context.theme.buttonColor,
+        child: Icon(CupertinoIcons.cart, color: Colors.white,),
+      ),
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
@@ -65,6 +71,7 @@ class _HomePageState extends State<HomePage> {
             // ignore: prefer_const_literals_to_create_immutables
             children: [
               CatalogHeader(),
+              // 5.heightBox,
               if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                 CatalogList().expand()
               else
@@ -79,7 +86,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-

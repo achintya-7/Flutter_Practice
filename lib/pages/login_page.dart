@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:practice/pages/home.dart';
+import 'package:practice/pages/home_page.dart';
 import 'package:practice/utils/routes.dart';
+import 'package:velocity_x/src/extensions/context_ext.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -37,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: Colors.white,
+        color: context.canvasColor,
 
         //single child scroll view will provide a scrolling widget for small screens
         child: SingleChildScrollView(
@@ -50,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                   "assets/images/signin.png",
                   fit: BoxFit.cover,
                   height: 300,
-                ),
+                ).h32(context),
 
                 // provides space between the 2 widgets, seems useful
                 SizedBox(
@@ -62,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                   "Hello there: $name",
                   style: TextStyle(
                     fontSize: 28,
-                    color: Colors.black,
+                    color: context.accentColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -127,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       // making a custom button
                       Material(
-                        color: Colors.purple,
+                        color: context.theme.buttonColor,
                         borderRadius:
                             BorderRadius.circular(changeButton ? 50 : 8),
                         child: InkWell(

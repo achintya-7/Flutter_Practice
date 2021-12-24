@@ -1,4 +1,4 @@
-// ignore_for_file: implementation_imports, import_of_legacy_library_into_null_safe
+// ignore_for_file: implementation_imports, import_of_legacy_library_into_null_safe, deprecated_member_use
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class CatalogItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            catalog.name.text.lg.color(Mytheme.darkBluishColor).bold.make(),
+            catalog.name.text.lg.color(context.accentColor).bold.make(),
             catalog.desc.text.textStyle(context.captionStyle).make(),
             10.heightBox,
             ButtonBar(
@@ -76,18 +76,18 @@ class CatalogItem extends StatelessWidget {
                   // here all means that the designing will be there even if button is pressed or not
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Mytheme.darkBluishColor,
+                        context.theme.buttonColor,
                       ),
                       shape: MaterialStateProperty.all(StadiumBorder())),
 
-                  child: "Buy".text.make(),
+                  child: "Add to Cart".text.make(),
                 )
               ],
             ).pOnly(right: 8.0)
           ],
         ))
       ],
-    )).white.rounded.square(150).make().py16();
+    )).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
 
