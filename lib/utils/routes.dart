@@ -3,4 +3,5 @@ class MyRoutes {
   // you dont need to make an object for this
   static String loginRoute = "/login";
   static String homeRoute = "/home";
+  static String homeDetailRoute = "/details";
 }
