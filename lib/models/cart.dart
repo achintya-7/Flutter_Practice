@@ -1,8 +1,9 @@
+import 'package:practice/core/core.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'catalog.dart';
 
 class CartModel {
-
   // catalog field
   late CatalogModel _catalog;
 
@@ -34,5 +35,15 @@ class CartModel {
   // Remove Item
   void remoave(Item item) {
     _itemIDs.remove(item.id);
+  }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  AddMutation(this.item);
+  @override
+  perform() {
+    store.cart._itemIDs.add(item.id);
   }
 }
