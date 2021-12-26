@@ -1,6 +1,5 @@
-// ignore_for_file: unnecessary_null_comparison
 
-import 'package:practice/models/catalog.dart';
+import 'catalog.dart';
 
 class CartModel {
 
