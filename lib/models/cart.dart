@@ -22,20 +22,7 @@ class CartModel {
   List<Item> get items => _itemIDs.map((id) => _catalog.getbyId(id)).toList();
 
   // Get total price
-  num get totalPrice => items.fold(
-      0,
-      (total, current) =>
-          total + current.price); // used to add item from previous to current
-
-  // Add Item
-  void add(Item item) {
-    _itemIDs.add(item.id);
-  }
-
-  // Remove Item
-  void remoave(Item item) {
-    _itemIDs.remove(item.id);
-  }
+  num get totalPrice => items.fold(0, (total, current) => total + current.price); // used to add item from previous to current
 }
 
 class AddMutation extends VxMutation<MyStore> {
@@ -47,3 +34,15 @@ class AddMutation extends VxMutation<MyStore> {
     store.cart._itemIDs.add(item.id);
   }
 }
+
+class RemoveMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  RemoveMutation(this.item);
+
+  @override
+  perform() {
+    store.cart._itemIDs.remove(item.id);
+  }
+}
+
