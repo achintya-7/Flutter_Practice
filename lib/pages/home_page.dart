@@ -1,16 +1,13 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, deprecated_member_use
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, deprecated_member_use, import_of_legacy_library_into_null_safe
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:practice/models/catalog.dart';
-import 'package:practice/models/item_widgets.dart';
 import 'package:practice/utils/routes.dart';
-import 'package:practice/widgets/drawer.dart';
 import 'package:practice/widgets/home_widgets/catalog_header.dart';
 import 'package:practice/widgets/home_widgets/catalog_list.dart';
-import 'package:practice/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {

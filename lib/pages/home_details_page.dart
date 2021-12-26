@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matcher/matcher.dart';
 import 'package:practice/models/catalog.dart';
+import 'package:practice/widgets/home_widgets/add_to_cart.dart';
 import 'package:practice/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -25,18 +26,7 @@ class HomeDetailPage extends StatelessWidget {
           buttonPadding: EdgeInsets.zero,
           children: [
             "\$${catalog.price}".text.bold.xl3.red500.make(),
-            ElevatedButton(
-              onPressed: () {},
-
-              // here all means that the designing will be there even if button is pressed or not
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    context.theme.buttonColor,
-                  ),
-                  shape: MaterialStateProperty.all(StadiumBorder())),
-
-              child: "Add to Cart".text.make(),
-            ).wh(150, 50),
+            AddToCart(catalog: catalog).wh(120, 40)
           ],
         ).p16(),
       ),

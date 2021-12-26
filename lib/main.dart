@@ -1,14 +1,16 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:practice/core/core.dart';
 import 'package:practice/pages/cart_page.dart';
 import 'package:practice/pages/home_page.dart';
 import 'package:practice/pages/login_page.dart';
 import 'package:practice/utils/routes.dart';
 import 'package:practice/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(VxState(store: MyStore(), child: const MyApp()) );
 }
 
 class MyApp extends StatelessWidget {
