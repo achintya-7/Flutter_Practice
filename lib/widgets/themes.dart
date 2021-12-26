@@ -36,7 +36,7 @@ class Mytheme {
           color: Colors.white,
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.white),
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
+          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
         ),
       );
 

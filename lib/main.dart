@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       // Map is similar to JSON and dictionary in Python which has a key and a value
       initialRoute: "/", // this is the initial route from where the mobile screen will start
       routes: {
-        "/": (context) => LoginPage(), // the stuff after the arrow is the RETURN in lambda function
+        "/": (context) => HomePage(), // the stuff after the arrow is the RETURN in lambda function
         MyRoutes.homeRoute: (context) => HomePage(),
         MyRoutes.loginRoute: (context) => LoginPage(),
         MyRoutes.cartRoute: (context) => CartPage(),
