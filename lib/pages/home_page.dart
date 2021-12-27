@@ -1,8 +1,12 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, deprecated_member_use, import_of_legacy_library_into_null_safe
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, deprecated_member_use, import_of_legacy_library_into_null_safe, prefer_const_literals_to_create_immutables
+
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:practice/core/core.dart';
+import 'package:practice/models/cart.dart';
 import 'dart:convert';
 import 'package:practice/models/catalog.dart';
 import 'package:practice/utils/routes.dart';
@@ -38,7 +42,8 @@ class _HomePageState extends State<HomePage> {
     var productsData = decodedData["products"];
 
     // this following code of line will fill the items list which was empty by default
-    CatalogModel.items = List.from(productsData).map((item) => Item.fromMap(item)).toList();
+    CatalogModel.items =
+        List.from(productsData).map((item) => Item.fromMap(item)).toList();
 
     // this will rebuild the widgets with the required data
     setState(() {});
@@ -51,15 +56,28 @@ class _HomePageState extends State<HomePage> {
   // here we try a new type of writing UI
   @override
   Widget build(BuildContext context) {
+    final _cart = (VxState.store as MyStore).cart;
     return Scaffold(
-      backgroundColor: context.canvasColor, //Theme.of(context).canvasColor, if not using VelocityX
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, MyRoutes.cartRoute);
-        },
-        backgroundColor: context.theme.buttonColor,
-        child: Icon(CupertinoIcons.cart, color: Colors.white,),
+      backgroundColor: context
+          .canvasColor, //Theme.of(context).canvasColor, if not using VelocityX
+
+      floatingActionButton: VxBuilder(
+        mutations: {AddMutation, RemoveMutation},
+        builder: (context, _) => FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, MyRoutes.cartRoute);
+          },
+          backgroundColor: context.theme.buttonColor,
+          child: Icon(
+            CupertinoIcons.cart,
+            color: Colors.white,
+          ),
+        ).badge(color: Vx.red500, size: 20, count: _cart.items.length, textStyle: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        )),
       ),
+
       body: SafeArea(
         child: Container(
           padding: Vx.m32,

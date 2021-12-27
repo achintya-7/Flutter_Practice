@@ -116,18 +116,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
 
                       // finally we are at button
-                      ElevatedButton(
-                        child: Text("Login"),
-                        style: TextButton.styleFrom(
-                          minimumSize: Size(150, 40),
-                        ),
-                        onPressed: () {
-                          // using pushNamed, we can assign the route via name
-                          Navigator.pushNamed(context, MyRoutes.homeRoute);
-                        },
-                      ),
-
-                      // making a custom button
                       Material(
                         color: context.theme.buttonColor,
                         borderRadius:
